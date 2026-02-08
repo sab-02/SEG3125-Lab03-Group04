@@ -68,7 +68,7 @@ function populateListProductChoices(slct2) {
 	} else {
 		optionArray.sort((a, b) => a.price - b.price);
 	}
-	
+
 	for (let i = 0; i < optionArray.length; i++) {
 		let product = optionArray[i];
 
@@ -122,9 +122,21 @@ function selectedItems(){
 }
 function populateShop() {
 	const container = document.getElementById("productsContainer");
-	
+	container.innerHTML = "";
+  
+	const selectedCategory = document.getElementById("categorySelect").value;
   
 	products.forEach(product => {
+  
+	  // FILTER USING BOOLEAN FLAGS
+	  if (
+		selectedCategory === "Vegetarian" && !product.vegetarian ||
+		selectedCategory === "GlutenFree" && !product.glutenFree ||
+		selectedCategory === "Organic" && !product.organic
+	  ) {
+		return;
+	  }
+  
 	  const card = document.createElement("div");
 	  card.className = "product-card";
   
@@ -134,20 +146,16 @@ function populateShop() {
 		</div>
 		<div class="product-title">${product.name}</div>
 		<div class="price">$${product.price.toFixed(2)}</div>
-		<label class="add-checkbox"> 
-		    <input
-			    type="checkbox"
-                name="product"
-                value="${product.name}"
-                onchange="selectedItems()"
-            >
-            Add
-        </label>
+		<label>
+		  <input type="checkbox" name="product" value="${product.name}">
+		  Add
+		</label>
 	  `;
   
 	  container.appendChild(card);
 	});
   }
+  
   function updatePriceRange() {
     const minSlider = document.getElementById("minPrice");
     const maxSlider = document.getElementById("maxPrice");
