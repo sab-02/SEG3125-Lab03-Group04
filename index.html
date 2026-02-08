@@ -5,55 +5,25 @@
 	<link href="style.css" rel="stylesheet" type="text/css">
 </head>
 
-<body>
+<body onload="populateShop()">
+    <h1>SJK Grocery Store</h1>
 
-<!-- Tab links, each one with an onclick event associated with it -->
- <div class = "card"> 
-    
-    <div class="card-title">
-        <h2>SJK Grocery Store</h2>
-    </div>
-
+    <!-- Tab links, each one with an onclick event associated with it -->
     <div class="tab">
         <button class="tablinks" onclick="openInfo(event, 'Client')">Client</button>
         <button class="tablinks" onclick="openInfo(event, 'Products')">Products</button>
         <button class="tablinks" onclick="openInfo(event, 'Cart')">Cart</button>
     </div>
-    
-    <!-- Tab content -->
-    <div id="Client" class="tabcontent">
-        <h3>Client Information</h3>
-        <p>What type of food do you enjoy?</p>
-        
-        <div class="diet-options">
-            <p>Select your meal preferences: </p>
-          
-            <label>
-              <input type="checkbox" name="diet" value="Vegetarian"
-                    onchange="populateListProductChoices('displayProduct')">
-              Vegetarian
-            </label>
-          
-            <label>
-              <input type="checkbox" name="diet" value="GlutenFree"
-                    onchange="populateListProductChoices('displayProduct')">
-              Gluten Free
-            </label>
 
-            <label>
-                <input type="checkbox" name="diet" value="Organic"
-                    onchange="populateListProductChoices('displayProduct')">
-                Organic
-            </label>
+    <h3>All Products</h3>
+           
+    <!-- Hi Jeny, this is where the categories should go-->
 
-          
-            <label>
-              <input type="checkbox" name="diet" value="None"
-                    onchange="populateListProductChoices('displayProduct')">
-              No Preference
-            </label>
-          </div>
-          
+    <!-- Shop -->
+    <div id= "Client" class="tabcontent">
+        <div class = "products" id="productsContainer">
+
+        </div>
     </div>
     
     <div id="Products" class="tabcontent">
@@ -74,7 +44,7 @@
     </div>
 
     <p id="signature">Site created by Group 4 - Kiara, Sabirin and Jeny</p>
-</div>
+
     
 <script src="scripts/groceries.js"></script>
     

@@ -23,6 +23,7 @@ function openInfo(evt, tabName) {
 }
 
 
+
 	
 // generate a checkbox list from a list of products
 // it makes each product name as the label for the checkbos
@@ -105,3 +106,32 @@ function selectedItems(){
 	c.appendChild(document.createTextNode("Total Price is $" + getTotalPrice(chosenProducts)));
 		
 }
+function populateShop() {
+	const container = document.getElementById("productsContainer");
+	
+  
+	products.forEach(product => {
+	  const card = document.createElement("div");
+	  card.className = "product-card";
+  
+	  card.innerHTML = `
+		<div class="image-wrapper">
+		  <img src="${product.image}" alt="${product.name}">
+		</div>
+		<div class="product-title">${product.name}</div>
+		<div class="price">$${product.price.toFixed(2)}</div>
+		<label class="add-checkbox"> 
+		    <input
+			    type="checkbox"
+                name="product"
+                value="${product.name}"
+                onchange="selectedItems()"
+            >
+            Add
+        </label>
+	  `;
+  
+	  container.appendChild(card);
+	});
+  }
+  
