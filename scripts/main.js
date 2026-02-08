@@ -183,3 +183,7 @@ function populateShop() {
 }
 updatePriceRange();
   
+window.onload = function () {
+    document.getElementById("defaultTab").click();
+	populateShop()
+};
