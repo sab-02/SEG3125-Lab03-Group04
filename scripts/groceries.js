@@ -109,7 +109,9 @@ function restrictListProducts(products, restrictions) {
 		if (
 			(!restrictions.vegetarian || product.vegetarian) &&
 			(!restrictions.glutenFree || product.glutenFree) &&
-			(!restrictions.organic || product.organic)
+			(!restrictions.organic || product.organic)&&
+			product.price >= minPrice &&
+			product.price <= maxPrice
 		) {
 			product_list.push({
 				name: product.name,
@@ -119,11 +121,11 @@ function restrictListProducts(products, restrictions) {
 	}
 
 	// Sort by price (low → high)
-	product_list.sort(function (a, b) {
-		return a.price - b.price;
-	});
+   //product_list.sort(function (a, b) {
+	//	return a.price - b.price;
+	//});
 
-	return product_list;
+	//return product_list;
 }
 
 

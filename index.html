@@ -16,7 +16,37 @@
     </div>
 
     <h3>All Products</h3>
+
+    <div class="controls-container">
            
+    <div class="price-container">
+        <label>
+           <label><b>Price Range:</b>
+                <span id="priceRangeText">$0 - $20</span>
+            </label>
+
+        </label>
+
+        <div class="slider">
+            <div class="price-slider"></div>
+        </div>
+
+        <div class="range-input">
+            <input type="range" id="minPrice" min="0" max="20" value="0" oninput="updatePriceRange();populateListProductChoices('displayProduct')">
+            <input type="range" id="maxPrice" min="0" max="20" value="20" oninput="updatePriceRange();populateListProductChoices('displayProduct')">
+        </div>
+
+    </div>
+
+
+    <div class="sort-container">
+        <label for="sortSelect"><b>Sort by</b></label>
+        <select id="sortSelect" onchange="populateListProductChoices('displayProduct')">
+            <option value="lowHigh">Price: Low to High</option>
+            <option value="highLow">Price: High to Low</option>
+        </select>
+    </div>
+    </div>
     <!-- Hi Jeny, this is where the categories should go-->
 
     <!-- Shop -->

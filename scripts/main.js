@@ -34,6 +34,13 @@ function populateListProductChoices(slct2) {
 
 	let dietCheckboxes = document.getElementsByName("diet");
 
+	
+	let minPrice = parseFloat(document.getElementById("minPrice").value);
+	let maxPrice = parseFloat(document.getElementById("maxPrice").value);
+
+	if (minPrice > maxPrice) {
+	return;}
+
 	let restrictions = {
 		vegetarian: false,
 		glutenFree: false,
@@ -54,7 +61,14 @@ function populateListProductChoices(slct2) {
 	}
 
 	let optionArray = restrictListProducts(products, restrictions);
-
+    
+	
+	if (sortOption === "highLow") {
+		optionArray.sort((a, b) => b.price - a.price);
+	} else {
+		optionArray.sort((a, b) => a.price - b.price);
+	}
+	
 	for (let i = 0; i < optionArray.length; i++) {
 		let product = optionArray[i];
 
@@ -134,4 +148,30 @@ function populateShop() {
 	  container.appendChild(card);
 	});
   }
+  function updatePriceRange() {
+    const minSlider = document.getElementById("minPrice");
+    const maxSlider = document.getElementById("maxPrice");
+    const range = document.querySelector(".price-slider");
+    const rangeText = document.getElementById("priceRangeText");
+
+    let minVal = parseInt(minSlider.value);
+    let maxVal = parseInt(maxSlider.value);
+
+    // Prevent sliders from crossing
+    if (minVal >= maxVal) {
+        minSlider.value = maxVal - 1;
+        minVal = maxVal - 1;
+    }
+
+    // Update the colored bar between dots
+    const maxRange = parseInt(minSlider.max);
+    range.style.left = (minVal / maxRange) * 100 + "%";
+    range.style.right = 100 - (maxVal / maxRange) * 100 + "%";
+
+    // Update displayed price text (optional but recommended)
+    if (rangeText) {
+        rangeText.textContent = `$${minVal} - $${maxVal}`;
+    }
+}
+updatePriceRange();
   
