@@ -28,67 +28,7 @@ function openInfo(evt, tabName) {
 // generate a checkbox list from a list of products
 // it makes each product name as the label for the checkbos
 
-function populateListProductChoices(slct2) {
-	let s2 = document.getElementById(slct2);
-	s2.innerHTML = "";
 
-	let dietCheckboxes = document.getElementsByName("diet");
-
-	
-	let minPrice = parseFloat(document.getElementById("minPrice").value);
-	let maxPrice = parseFloat(document.getElementById("maxPrice").value);
-
-	if (minPrice > maxPrice) {
-	return;}
-
-	let restrictions = {
-		vegetarian: false,
-		glutenFree: false,
-		organic: false
-	};
-
-	for (let i = 0; i < dietCheckboxes.length; i++) {
-		if (dietCheckboxes[i].checked) {
-			if (dietCheckboxes[i].value === "Vegetarian") restrictions.vegetarian = true;
-			if (dietCheckboxes[i].value === "GlutenFree") restrictions.glutenFree = true;
-			if (dietCheckboxes[i].value === "Organic") restrictions.organic = true;
-			if (dietCheckboxes[i].value === "None") {
-				restrictions.vegetarian = false;
-				restrictions.glutenFree = false;
-				restrictions.organic = false;
-			}
-		}
-	}
-
-	let optionArray = restrictListProducts(products, restrictions);
-    
-	
-	if (sortOption === "highLow") {
-		optionArray.sort((a, b) => b.price - a.price);
-	} else {
-		optionArray.sort((a, b) => a.price - b.price);
-	}
-
-	for (let i = 0; i < optionArray.length; i++) {
-		let product = optionArray[i];
-
-		let checkbox = document.createElement("input");
-		checkbox.type = "checkbox";
-		checkbox.name = "product";
-		checkbox.value = product.name;
-		s2.appendChild(checkbox);
-
-		let label = document.createElement("label");
-		label.appendChild(
-			document.createTextNode(
-				product.name + " ($" + product.price.toFixed(2) + ")"
-			)
-		);
-		s2.appendChild(label);
-
-		s2.appendChild(document.createElement("br"));
-	}
-}
 
 // This function is called when the "Add selected items to cart" button in clicked
 // The purpose is to build the HTML to be displayed (a Paragraph) 
@@ -120,43 +60,86 @@ function selectedItems(){
 	c.appendChild(document.createTextNode("Total Price is $" + getTotalPrice(chosenProducts)));
 		
 }
+
 function populateShop() {
-	const container = document.getElementById("productsContainer");
-	container.innerHTML = "";
-  
-	const selectedCategory = document.getElementById("categorySelect").value;
-  
-	products.forEach(product => {
-  
-	  // FILTER USING BOOLEAN FLAGS
-	  if (
-		selectedCategory === "Vegetarian" && !product.vegetarian ||
-		selectedCategory === "GlutenFree" && !product.glutenFree ||
-		selectedCategory === "Organic" && !product.organic
-	  ) {
-		return;
-	  }
-  
-	  const card = document.createElement("div");
-	  card.className = "product-card";
-  
-	  card.innerHTML = `
-		<div class="image-wrapper">
-		  <img src="${product.image}" alt="${product.name}">
-		</div>
-		<div class="product-title">${product.name}</div>
-		<div class="price">$${product.price.toFixed(2)}</div>
-		<label>
-		  <input type="checkbox" name="product" value="${product.name}">
-		  Add
-		</label>
-	  `;
-  
-	  container.appendChild(card);
-	});
-  }
-  
-  function updatePriceRange() {
+    const container = document.getElementById("productsContainer");
+    container.innerHTML = "";
+
+    // ---- Category dropdown ----
+    const selectedCategory = document.getElementById("categorySelect")?.value || "None";
+
+    // ---- Diet checkboxes ----
+    const dietCheckboxes = document.getElementsByName("diet");
+    let restrictions = {
+        vegetarian: false,
+        glutenFree: false,
+        organic: false
+    };
+
+    for (let i = 0; i < dietCheckboxes.length; i++) {
+        if (dietCheckboxes[i].checked) {
+            if (dietCheckboxes[i].value === "Vegetarian") restrictions.vegetarian = true;
+            if (dietCheckboxes[i].value === "GlutenFree") restrictions.glutenFree = true;
+            if (dietCheckboxes[i].value === "Organic") restrictions.organic = true;
+        }
+    }
+
+    // ---- Price range ----
+    const minPrice = parseFloat(document.getElementById("minPrice").value);
+    const maxPrice = parseFloat(document.getElementById("maxPrice").value);
+    if (minPrice > maxPrice) return;
+
+    // ---- Sort option ----
+    const sortOption = document.getElementById("sortSelect").value;
+
+    // ---- Filter products ----
+    let filteredProducts = products.filter(product => {
+
+        // Category dropdown filter
+        if (selectedCategory === "Vegetarian" && !product.vegetarian) return false;
+        if (selectedCategory === "GlutenFree" && !product.glutenFree) return false;
+        if (selectedCategory === "Organic" && !product.organic) return false;
+
+        // Checkbox filters
+        if (restrictions.vegetarian && !product.vegetarian) return false;
+        if (restrictions.glutenFree && !product.glutenFree) return false;
+        if (restrictions.organic && !product.organic) return false;
+
+        // Price filter
+        if (product.price < minPrice || product.price > maxPrice) return false;
+
+        return true;
+    });
+
+    // ---- Sort products ----
+    if (sortOption === "highLow") {
+        filteredProducts.sort((a, b) => b.price - a.price);
+    } else {
+        filteredProducts.sort((a, b) => a.price - b.price);
+    }
+
+    // ---- Render cards ----
+    filteredProducts.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+
+        card.innerHTML = `
+            <div class="image-wrapper">
+                <img src="${product.image}" alt="${product.name}">
+            </div>
+            <div class="product-title">${product.name}</div>
+            <div class="price">$${product.price.toFixed(2)}</div>
+            <label>
+                <input type="checkbox" name="product" value="${product.name}">
+                Add
+            </label>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+function updatePriceRange() {
     const minSlider = document.getElementById("minPrice");
     const maxSlider = document.getElementById("maxPrice");
     const range = document.querySelector(".price-slider");
