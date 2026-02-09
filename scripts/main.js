@@ -15,42 +15,48 @@ function showSection(sectionId) {
 
 
 
-	
-// generate a checkbox list from a list of products
-// it makes each product name as the label for the checkbos
-
-
-
 // This function is called when the "Add selected items to cart" button in clicked
 // The purpose is to build the HTML to be displayed (a Paragraph) 
 // We build a paragraph to contain the list of selected items, and the total price
 
-function selectedItems(){
-	
-	var ele = document.getElementsByName("product");
-	var chosenProducts = [];
-	
-	var c = document.getElementById('displayCart');
-	c.innerHTML = "";
-	
-	// build list of selected item
-	var para = document.createElement("P");
-	para.innerHTML = "You selected : ";
-	para.appendChild(document.createElement("br"));
-	for (i = 0; i < ele.length; i++) { 
-		if (ele[i].checked) {
-			para.appendChild(document.createTextNode(ele[i].value));
-			para.appendChild(document.createTextNode(" -  $" + String(getPrice(ele[i].value))));
-			para.appendChild(document.createElement("br"));
-			chosenProducts.push(ele[i].value);
-		}
-	}
-		
-	// add paragraph and total price
-	c.appendChild(para);
-	c.appendChild(document.createTextNode("Total Price is $" + getTotalPrice(chosenProducts)));
-		
+function selectedItems() {
+
+    const ele = document.getElementsByName("product");
+    const cart = document.getElementById("displayCart");
+    cart.innerHTML = "";
+
+    let chosenProducts = [];
+
+    for (let i = 0; i < ele.length; i++) {
+        if (ele[i].checked) {
+            chosenProducts.push(ele[i].value);
+
+            const item = document.createElement("div");
+            item.className = "cart-item";
+
+            item.innerHTML = `
+                <span class="cart-name">${ele[i].value}</span>
+                <span class="cart-price">$${getPrice(ele[i].value).toFixed(2)}</span>
+            `;
+
+            cart.appendChild(item);
+        }
+    }
+
+    // Total price
+    const totalDiv = document.createElement("div");
+    totalDiv.className = "cart-total";
+
+    totalDiv.innerHTML = `
+        <span>Total</span>
+        <span>$${getTotalPrice(chosenProducts).toFixed(2)}</span>
+    `;
+
+    cart.appendChild(totalDiv);
 }
+
+
+
 
 function populateShop() {
     const container = document.getElementById("productsContainer");
