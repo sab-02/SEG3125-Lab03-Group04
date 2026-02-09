@@ -18,7 +18,7 @@ var products = [
 		glutenFree: false,
 		organic: false,
 		price: 2.35,
-		image: "photos/bread.jpg",
+		image: "photos/bread.png",
 		ingredients: ["wheat flour", "yeast", "water", "salt"]
 	},
 	{
@@ -27,7 +27,7 @@ var products = [
 		glutenFree: true,
 		organic: false,
 		price: 10.00,
-		image: "photos/salmon.jpg",
+		image: "photos/salmon.png",
 		ingredients: ["salmon"]
 	},
 	{
@@ -36,7 +36,7 @@ var products = [
 		glutenFree: true,
 		organic: true,
 		price: 3.50,
-		image: "photos/tofu.jpg",
+		image: "photos/tofu.png",
 		ingredients: ["soybeans", "water", "calcium sulfate"]
 	},
 	{
@@ -45,7 +45,7 @@ var products = [
 		glutenFree: true,
 		organic: true,
 		price: 7.25,
-		image: "photos/chickenbreast.jpg", 
+		image: "photos/chickenbreast.png", 
 		ingredients: ["chicken"]
 	},
 	{
@@ -54,7 +54,7 @@ var products = [
 		glutenFree: false,
 		organic: false,
 		price: 2.99,
-		image: "photos/pasta.jpg",
+		image: "photos/pasta.png",
 		ingredients: ["wheat semolina", "water"]
 	},
 	{
@@ -72,7 +72,7 @@ var products = [
 		glutenFree: true,
 		organic: false,
 		price: 4.25,
-		image: "photos/cheese.jpg", 
+		image: "photos/cheese.png", 
 		ingredients: ["milk", "salt", "enzymes", "bacterial cultures"]
 	},
 	{
@@ -90,7 +90,7 @@ var products = [
 		glutenFree: false,
 		organic: false,
 		price: 3.40,
-		image: "photos/cereal.jpg", 
+		image: "photos/cereal.png", 
 		ingredients: ["wheat", "sugar", "salt"]
 	}
 ];
