@@ -13,22 +13,24 @@
         <span class="separator">›</span>
         <span id="crumbCart" onclick="showSection('Cart')">Cart</span>
     </nav>
+ 
+    <!-- Shop -->
+    <div id= "Shop" class="section">
+
+        <h3>Make your selection!</h3>
+
+        <div class="controls-container">
 
 
-    <h3>Make your selection!</h3>
-
-    <div class="controls-container">
-
-
-        <div class="category-container">
-            <label for="categorySelect"><b>Category</b></label>
-            <select id="categorySelect" onchange="populateShop()">
-              <option value="All">All</option>
-              <option value="Vegetarian">Vegetarian</option>
-              <option value="GlutenFree">Gluten Free</option>
-              <option value="Organic">Organic</option>
-            </select>
-          </div>
+            <div class="category-container">
+                <label for="categorySelect"><b>Category</b></label>
+                <select id="categorySelect" onchange="populateShop()">
+                <option value="All">All</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="GlutenFree">Gluten Free</option>
+                <option value="Organic">Organic</option>
+                </select>
+            </div>
            
     <div class="price-container">
         <label>
@@ -57,11 +59,11 @@
             <option value="highLow">Price: High to Low</option>
         </select>
     </div>
-    </div>
-    <!-- Hi Jeny, this is where the categories should go-->
 
-    <!-- Shop -->
-    <div id= "Shop" class="section">
+    
+
+    </div>
+
         <div class = "products" id="productsContainer">
 
         </div>
