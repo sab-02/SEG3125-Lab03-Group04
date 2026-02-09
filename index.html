@@ -44,8 +44,8 @@
         </div>
 
         <div class="range-input">
-            <input type="range" id="minPrice" min="0" max="20" value="0" oninput="updatePriceRange();populateListProductChoices('displayProduct')">
-            <input type="range" id="maxPrice" min="0" max="20" value="20" oninput="updatePriceRange();populateListProductChoices('displayProduct')">
+            <input type="range" id="minPrice" min="0" max="20" value="0" oninput="updatePriceRange();populateShop()">
+            <input type="range" id="maxPrice" min="0" max="20" value="20" oninput="updatePriceRange();populateShop()">
         </div>
 
     </div>
@@ -53,7 +53,7 @@
 
     <div class="sort-container">
         <label for="sortSelect"><b>Sort by</b></label>
-        <select id="sortSelect" onchange="populateListProductChoices('displayProduct')">
+        <select id="sortSelect" onchange="populateShop()">
             <option value="lowHigh">Price: Low to High</option>
             <option value="highLow">Price: High to Low</option>
         </select>
