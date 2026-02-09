@@ -130,7 +130,7 @@ function populateShop() {
             <div class="product-title">${product.name}</div>
             <div class="price">$${product.price.toFixed(2)}</div>
             <label>
-                <input type="checkbox" name="product" value="${product.name}">
+                <input type="checkbox" name="product" onclick="selectedItems()" value="${product.name}">
                 Add
             </label>
         `;
