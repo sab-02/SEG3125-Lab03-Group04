@@ -165,3 +165,32 @@ input[type="range"]::-webkit-slider-thumb {
     z-index: 3;
 }
 
+/*Styling for breadcrumbs*/
+
+.breadcrumb {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+
+.breadcrumb span {
+    cursor: pointer;
+    color: #555;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+
+.breadcrumb span:hover {
+    color: #2c7be5;          
+    text-decoration: underline;
+}
+
+
+.breadcrumb .separator {
+    cursor: default;
+    color: #999;
+    margin: 0 6px;
+}
+
+
+

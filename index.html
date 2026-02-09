@@ -8,17 +8,17 @@
 <body onload="populateShop()">
     <h1>SJK Grocery Store</h1>
 
-    <!-- Tab links, each one with an onclick event associated with it -->
-    <div class="tab">
-        <button id="defaultTab" class="tablinks" onclick="openInfo(event, 'Client')">Shop</button>
-        <button class="tablinks" onclick="openInfo(event, 'Cart')">Cart</button>
-    </div>
+    <nav class="breadcrumb">
+        <span id="crumbShop" onclick="showSection('Shop')">Shop</span>
+        <span class="separator">›</span>
+        <span id="crumbCart" onclick="showSection('Cart')">Cart</span>
+    </nav>
+
 
     <h3>Make your selection!</h3>
 
     <div class="controls-container">
 
-        
 
         <div class="category-container">
             <label for="categorySelect"><b>Category</b></label>
@@ -61,26 +61,16 @@
     <!-- Hi Jeny, this is where the categories should go-->
 
     <!-- Shop -->
-    <div id= "Client" class="tabcontent">
+    <div id= "Shop" class="section">
         <div class = "products" id="productsContainer">
 
         </div>
     </div>
     
-    <div id="Products" class="tabcontent">
-        <h3>Your targeted products</h3>
-        <p>We preselected products based on your restrictions.</p>
-        Choose items to buy:
-        <div id="displayProduct"></div>
-        <button id="addCart" type="button" class="block" onclick="selectedItems()">
-            Add selected items to cart.
-        </button>
-        
-    </div>
 
-    <div id="Cart" class="tabcontent">
-        <h3>Cart</h3>
-        <p>Here is your cart.</p>
+    <div id="Cart" class="section">
+        <h3>Your Cart</h3>
+        <p>Below is a summary of the items you have chosen.</p>
         <div id="displayCart"></div>
     </div>
 
